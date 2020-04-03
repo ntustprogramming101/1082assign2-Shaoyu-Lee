@@ -34,9 +34,9 @@ float groundhogLestX, groundhogLestY;
 
 int gameState;
 int groundhogMoveTime = 250;
-int hitPoints = 2;
-int actionFrame;
-float lastTime;
+int hitPoints = 2; //groundhog's initial life point
+int actionFrame; //groundhog's moving frame 
+float lastTime; //time when the groundhog finished moving
 
 boolean downPressed = false;
 boolean leftPressed = false;
@@ -127,7 +127,7 @@ void draw() {
     image(cabbageImg, cabbageX, cabbageY, CABBAGE_W, CABBAGE_H);
     if (groundhogX + GROUNDHOG_W > cabbageX && groundhogX < cabbageX + CABBAGE_W
       && groundhogY + GROUNDHOG_H > cabbageY && groundhogY < cabbageY + CABBAGE_H) {
-      cabbageX = width + CABBAGE_W;
+      cabbageX = width + CABBAGE_W; //cabbage is eaten
       hitPoints = hitPoints+1;
     }
     //soldier
@@ -136,21 +136,26 @@ void draw() {
     image(soldierImg, soldierX-SOLDIER_W, soldierY, SOLDIER_W, SOLDIER_H);
     if (groundhogX + GROUNDHOG_W > soldierX-SOLDIER_W && groundhogX < soldierX) {
       if (groundhogY + GROUNDHOG_H > soldierY && groundhogY < soldierY + SOLDIER_H) {
+        //When the groundhog hits a soldier, it reduces one life point.
         hitPoints = hitPoints-1;
+        //Groundhog willn't return to its original position when its life point is zeroed
         if (hitPoints > 0 && hitPoints <= 3) {
           groundhogX = ONE_BLOCK*4;
           groundhogY = ONE_BLOCK;
         }
-        downPressed =false;
+        //When returning to its original position, the groundhog doesn't start moving directly
+        downPressed = false; 
         leftPressed = false;
         rightPressed = false;
       }
     }
     //groundhog
     //print(downPressed+"\n");
+    //When the button is not pressed, draw the groundhogIdle image
     if (downPressed == false && leftPressed == false && rightPressed == false) {
       image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
     }
+    //draw the groundhogDown image between 1-14 frames
     if (downPressed) {
       actionFrame++;
       if (actionFrame > 0 && actionFrame < 15) {
@@ -161,7 +166,7 @@ void draw() {
         downPressed = false;
       }
     }
-
+    //draw the groundhogLeft image between 1-14 frames
     if (leftPressed) {
       actionFrame++;
       if (actionFrame > 0 && actionFrame < 15) {
@@ -172,7 +177,7 @@ void draw() {
         leftPressed = false;
       }
     }
-
+    //draw the groundhogRight image between 1-14 frames
     if (rightPressed) {
       actionFrame++;
       if (actionFrame > 0 && actionFrame < 15) {
@@ -227,7 +232,7 @@ void draw() {
 }
 
 void keyPressed() {
-  float newTime = millis();
+  float newTime = millis(); //time when the groundhog started moving
   if (key == CODED) {
     switch (keyCode) {
     case DOWN:
