@@ -147,7 +147,7 @@ void draw() {
       }
     }
     //groundhog
-    print(downPressed+"\n");
+    //print(downPressed+"\n");
     if (downPressed == false && leftPressed == false && rightPressed == false) {
       image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
     }
@@ -156,31 +156,34 @@ void draw() {
       if (actionFrame > 0 && actionFrame < 15) {
         groundhogY += ONE_BLOCK / 15.0;
         image(groundhogDownImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      } 
+      } else {
         groundhogY = groundhogLestY + ONE_BLOCK;
         downPressed = false;
       }
-    
+    }
+
     if (leftPressed) {
       actionFrame++;
       if (actionFrame > 0 && actionFrame < 15) {
         groundhogX -= ONE_BLOCK / 15.0;
         image(groundhogLeftImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      } 
+      } else {
         groundhogX = groundhogLestX - ONE_BLOCK;
         leftPressed = false;
       }
-    
+    }
+
     if (rightPressed) {
       actionFrame++;
       if (actionFrame > 0 && actionFrame < 15) {
         groundhogX += ONE_BLOCK / 15.0;
         image(groundhogRightImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      } 
+      } else {
         groundhogX = groundhogLestX + ONE_BLOCK;
         rightPressed = false;
       }
-    
+    }
+
     //groundhog: boundary detection
     if (groundhogX >= width - ONE_BLOCK) {
       groundhogX = width - ONE_BLOCK;
@@ -195,7 +198,7 @@ void draw() {
       groundhogY = 0;
     }
     break;
-    
+
     // Game Over
   case GAME_OVER:
     image(gameoverImg, 0, 0, width, height);
