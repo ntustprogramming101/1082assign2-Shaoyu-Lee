@@ -153,54 +153,30 @@ void draw() {
     }
     if (downPressed) {
       actionFrame++;
-      //if (actionFrame < 1 && actionFrame >= 0) {
-      //  image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      //  groundhogY += ONE_BLOCK / 15.0;
-      //} else 
       if (actionFrame > 0 && actionFrame < 15) {
         groundhogY += ONE_BLOCK / 15.0;
         image(groundhogDownImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
       } 
-      //else if (actionFrame > 14 && actionFrame <= 15) {
-      //  groundhogY += ONE_BLOCK / 15.0;
-      //  image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      //} else {
         groundhogY = groundhogLestY + ONE_BLOCK;
         downPressed = false;
       }
     
     if (leftPressed) {
       actionFrame++;
-      //if (actionFrame < 1 && actionFrame >= 0) {
-      //  image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      //  groundhogX -= ONE_BLOCK / 15.0;
-      //} else 
       if (actionFrame > 0 && actionFrame < 15) {
         groundhogX -= ONE_BLOCK / 15.0;
         image(groundhogLeftImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
       } 
-      //else if (actionFrame > 14 && actionFrame <= 15) {
-      //  groundhogX -= ONE_BLOCK / 15.0;
-      //  image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      //} else {
         groundhogX = groundhogLestX - ONE_BLOCK;
         leftPressed = false;
       }
     
     if (rightPressed) {
       actionFrame++;
-      //if (actionFrame < 1 && actionFrame >= 0) {
-      //  image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      //  groundhogX += ONE_BLOCK / 15.0;
-      //} else 
       if (actionFrame > 0 && actionFrame < 15) {
         groundhogX += ONE_BLOCK / 15.0;
         image(groundhogRightImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
       } 
-      //else if (actionFrame > 14 && actionFrame <= 15) {
-      //  groundhogX += ONE_BLOCK / 15.0;
-      //  image(groundhogIdleImg, groundhogX, groundhogY, GROUNDHOG_W, GROUNDHOG_H);
-      //} else {
         groundhogX = groundhogLestX + ONE_BLOCK;
         rightPressed = false;
       }
@@ -278,19 +254,3 @@ void keyPressed() {
     }
   }
 }
-////////
-/*void keyReleased() {
- if (key == CODED) {
- switch (keyCode) {
- case DOWN:
- //downPressed = false;
- break;
- case LEFT:
- leftPressed = false;
- break;
- case RIGHT:
- rightPressed = false;
- break;
- }
- }
- }*/
